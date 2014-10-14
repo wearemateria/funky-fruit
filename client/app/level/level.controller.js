@@ -126,13 +126,13 @@ angular.module('fruitGameApp')
 
 	function startGame() {
 		lastInput = new Date();
-		document.onkeypress 	= 	function () {
-		  								if(!isPressing){detectKey(event);}
-		  							};
+		document.onkeypress = 	function () {
+	  								if(!isPressing){detectKey(event);}
+	  							};
 
-		document.onkeyup 		=	function () {
-		  								isPressing = false;
-		  							};
+		document.onkeyup 	=	function () {
+	  								isPressing = false;
+	  							};
 	}
 
 	startGame();
