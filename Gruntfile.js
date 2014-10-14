@@ -90,19 +90,6 @@ module.exports = function (grunt) {
           '<%= yeoman.client %>/{app,components}/**/*.{scss,sass}'],
         tasks: ['sass', 'autoprefixer']
       },
-      coffee: {
-        files: [
-          '<%= yeoman.client %>/{app,components}/**/*.{coffee,litcoffee,coffee.md}',
-          '!<%= yeoman.client %>/{app,components}/**/*.spec.{coffee,litcoffee,coffee.md}'
-        ],
-        tasks: ['newer:coffee', 'injector:scripts']
-      },
-      coffeeTest: {
-        files: [
-          '<%= yeoman.client %>/{app,components}/**/*.spec.{coffee,litcoffee,coffee.md}'
-        ],
-        tasks: ['karma']
-      },
       gruntfile: {
         files: ['Gruntfile.js']
       },
@@ -417,11 +404,9 @@ module.exports = function (grunt) {
     // Run some tasks in parallel to speed up the build process
     concurrent: {
       server: [
-        'coffee',
         'sass',
       ],
       test: [
-        'coffee',
         'sass',
       ],
       debug: {
@@ -434,7 +419,6 @@ module.exports = function (grunt) {
         }
       },
       dist: [
-        'coffee',
         'sass',
         'imagemin',
         'svgmin'
@@ -477,26 +461,6 @@ module.exports = function (grunt) {
         NODE_ENV: 'production'
       },
       all: localConfig
-    },
-
-    // Compiles CoffeeScript to JavaScript
-    coffee: {
-      options: {
-        sourceMap: true,
-        sourceRoot: ''
-      },
-      server: {
-        files: [{
-          expand: true,
-          cwd: 'client',
-          src: [
-            '{app,components}/**/*.coffee',
-            '!{app,components}/**/*.spec.coffee'
-          ],
-          dest: '.tmp',
-          ext: '.js'
-        }]
-      }
     },
 
     // Compiles Sass to CSS
