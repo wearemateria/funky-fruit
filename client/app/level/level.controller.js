@@ -64,29 +64,11 @@ angular.module('fruitGameApp')
   				generateFruits(8);
   			}
   		}
-
-		/*var timer = setInterval(function () {
-			if (index < $scope.currentFruits.length) {
-				$scope.activeFruit = $scope.currentFruits[index];
-				$scope.$apply();
-				index++;
-			}
-			else {
-				clearInterval(timer);
-			}
-		}, 2000);*/
 		
-  		var index = 0;
-		function changeFruit(i) {
-			$scope.activeFruit = $scope.currentFruits[i];
-			index++;
-		}
-		$interval(function () {
-			changeFruit(index);
-		}, 2000/$scope.level, $scope.currentFruits.length);
 
   		// Handle keypress 
   		var timeDiff, currentInput, lastInput;
+  		var inputIndex = 0;
   		var isPressing = false;
     	function detectKey(event){
     		isPressing = true;
@@ -113,13 +95,34 @@ angular.module('fruitGameApp')
 		              break;
 		      }
 
-
-		    currentInput = new Date();
-		    timeDiff = currentInput.valueOf() - lastInput.valueOf();
-		    lastInput = new Date();
-		    $scope.score += $scope.level * 5 + Math.floor(20000/timeDiff);
-		    $scope.$apply();
+		    // Check if the pressed fruit is correct
+		    if( $scope.activeFruit === $scope.currentFruits[inputIndex] ) {
+		    	currentInput = new Date();
+			    timeDiff = currentInput.valueOf() - lastInput.valueOf();
+			    lastInput = new Date();
+			    $scope.score += $scope.level * 5 + Math.floor(20000/timeDiff);
+			    inputIndex++;
+			    $scope.$apply();
+			    if ( $scope.currentFruits.length === inputIndex ) {
+			    	alert('Ganhaste, crl! És bem fino, bro');
+			    }
+		    }
+		    else {
+		    	alert('És burro, pah??');
+		    }
 	  }
+
+  		var index = 0;
+		function changeFruit(i) {
+			$scope.activeFruit = $scope.currentFruits[i];
+			index++;
+		}
+
+		// Handle the sequence
+		changeFruit(index);
+		$interval(function () {
+			changeFruit(index);
+		}, 1500/$scope.level, $scope.currentFruits.length);
 
 	function startGame() {
 		lastInput = new Date();
