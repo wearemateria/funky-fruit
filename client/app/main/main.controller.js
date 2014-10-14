@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('fruitGameApp')
-  .controller('MainCtrl', function ($scope, $http, socket) {
+  .controller('MainCtrl', function ($scope, $http, $state) {
     /*$scope.awesomeThings = [];
 
     $http.get('/api/things').success(function(awesomeThings) {
@@ -30,7 +30,7 @@ angular.module('fruitGameApp')
       switch(event.which)
       {         
           case 97: //A
-              console.log("A");
+              $state.go('level');
               break;
            
           case 115: //S
