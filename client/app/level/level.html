@@ -1,4 +1,9 @@
 <div class="fruit-wrapper" style="background-color: {{ activeFruit.color }}">
-	<h1><strong>SCORE: {{ score }}</strong></h1>
+	<div class="score">
+		<h1><img src="assets/images/score.svg">&nbsp;{{ score }}</h1>
+		<img class="vida" src="assets/images/vidas.svg" ng-show="lives>0">
+		<img class="vida" src="assets/images/vidas.svg" ng-show="lives>1">
+		<img class="vida" src="assets/images/vidas.svg" ng-show="lives>2">
+	</div>
 	<h1 class="absolute-middle">{{ activeFruit.name }}</h2>
 </div>

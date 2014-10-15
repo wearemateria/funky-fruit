@@ -56,6 +56,7 @@ html, body {
 
 * {
 	color: white;
+	font-family: 'baseninemedium';
 }
 
 div[ui-view] {
@@ -78,5 +79,14 @@ div[ui-view] {
 
 	h1 {
 		margin: 0;
+		font-size: 90px;
+	}
+
+	.score img {
+		width: 15%;
+	}
+
+	.score .vida {
+		width: 7%;
 	}
 }
