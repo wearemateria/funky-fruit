@@ -35,6 +35,7 @@ $fa-font-path: "/bower_components/font-awesome/fonts";
 @import 'gameover/gameover.scss';
 @import 'level/level.scss';
 @import 'main/main.scss';
+@import 'submit/submit.scss';
 @import 'modal/modal.scss';
 // endinjector
 
@@ -98,4 +99,15 @@ div[ui-view] {
 	.score .vida {
 		width: 7%;
 	}
+}
+
+.blink {
+  animation: blink .7s steps(5, start) 4;
+  -webkit-animation: blink .7s steps(5, start) 4;
+}
+@keyframes blink {
+  to { visibility: hidden; }
+}
+@-webkit-keyframes blink {
+  to { visibility: hidden; }
 }

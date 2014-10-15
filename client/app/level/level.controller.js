@@ -84,6 +84,7 @@ angular.module('fruitGameApp')
 		    $scope.score += $scope.level * 5 + Math.floor(20000/timeDiff);
 		    inputIndex++;
 		    $scope.$apply();
+		    $('#'+$scope.activeFruit.sound)[0].play();
 		    if ( $scope.currentFruits.length === inputIndex ) {
 		    	$scope.isPlaying = false;
 		    	alert('Ganhaste, crl! És bem fino, bro');
@@ -152,7 +153,6 @@ angular.module('fruitGameApp')
 		var index = 0;
 		function changeFruit(i) {
 			$scope.activeFruit = $scope.currentFruits[i];
-			console.log($scope.activeFruit.sound);
 			$('#'+$scope.activeFruit.sound)[0].play();
 			if(index+1 === $scope.currentFruits.length) {
 				startGame();
