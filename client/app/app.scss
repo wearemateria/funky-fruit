@@ -8,6 +8,19 @@ $fa-font-path: "/bower_components/font-awesome/fonts";
  * App-wide Styles
  */
 
+@font-face {
+    font-family: 'baseninemedium';
+    src: url('../assets/fonts/baseninesmallcaps-webfont.eot');
+    src: url('../assets/fonts/baseninesmallcaps-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../assets/fonts/baseninesmallcaps-webfont.woff2') format('woff2'),
+         url('../assets/fonts/baseninesmallcaps-webfont.woff') format('woff'),
+         url('../assets/fonts/baseninesmallcaps-webfont.ttf') format('truetype'),
+         url('../assets/fonts/baseninesmallcaps-webfont.svg#baseninemedium') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
 .browsehappy {
     margin: 0.2em 0;
     background: #ccc;
