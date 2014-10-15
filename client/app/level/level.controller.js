@@ -6,6 +6,7 @@ angular.module('fruitGameApp')
   		$scope.score = 0;
   		$scope.lives = 3;
   		$scope.level = 1;
+  		$scope.isPlaying = true;
 
   		$scope.fruits = {
   			orange: {
@@ -13,35 +14,35 @@ angular.module('fruitGameApp')
   				color: '#FF851B',
   				key: 'A',
   				keyCode: 97,
-  				sound: 'someAudio.mp3'
+  				sound: 1
   			},
   			banana: {
   				name: 'banana',
   				color: '#FFDC00',
   				key: 'S',
   				keyCode: 115,
-  				sound: 'someAudio.mp3'
+  				sound: 2
   			},
   			kiwi: {
   				name: 'kiwi',
   				color: '#2ECC40',
   				key: 'D',
   				keyCode: 100,
-  				sound: 'someAudio.mp3'
+  				sound: 3
   			},
   			strawberry: {
 				name: 'strawberry',
   				color: '#FF4136',
   				key: 'F',
   				keyCode: 102,
-  				sound: 'someAudio.mp3'
+  				sound: 4
   			},
   			other: {
 				name: 'the other',
   				color: '#001F3F',
   				key: 'G',
   				keyCode: 103,
-  				sound: 'someAudio.mp3'
+  				sound: 5
   			}
   		};
 		
@@ -84,19 +85,23 @@ angular.module('fruitGameApp')
 		    inputIndex++;
 		    $scope.$apply();
 		    if ( $scope.currentFruits.length === inputIndex ) {
+		    	$scope.isPlaying = false;
 		    	alert('Ganhaste, crl! És bem fino, bro');
 		    	$scope.level++;
 		    	newLevel();
 		    }
 	    }
 	    else {
-	    	alert('És burro, pah??');
+	    	$scope.lives--;
+	    	console.log('burro do crl');
+	    	newLevel();
 	    }
 	}
 
 	
 	// Start playing
 	function startGame() {
+		$scope.isPlaying = true;
 		lastInput = new Date();
 		document.onkeypress = 	function () {
 	  								if(!isPressing){detectKey(event);}
@@ -112,7 +117,11 @@ angular.module('fruitGameApp')
 		function generateFruits (length) {
 			$scope.currentFruits = [];
 			for(var i = 0; i < length; i++) {
-				$scope.currentFruits.push($scope.fruits[Object.keys($scope.fruits)[(Math.floor(Math.random() * (5 - 0)) + 0)]]);
+				var fruit = $scope.fruits[Object.keys($scope.fruits)[(Math.floor(Math.random() * (5 - 0)) + 0)]];
+				while(fruit === $scope.currentFruits[i-1]) {
+					fruit = $scope.fruits[Object.keys($scope.fruits)[(Math.floor(Math.random() * (5 - 0)) + 0)]]
+				}
+				$scope.currentFruits.push(fruit);
 			}
 		}
 
@@ -132,6 +141,8 @@ angular.module('fruitGameApp')
 		var index = 0;
 		function changeFruit(i) {
 			$scope.activeFruit = $scope.currentFruits[i];
+			console.log($scope.activeFruit.sound);
+			$('#'+$scope.activeFruit.sound)[0].play();
 			index++;
 		}
 		
@@ -141,7 +152,6 @@ angular.module('fruitGameApp')
 		}, 1500/$scope.level, $scope.currentFruits.length);
 		startGame();
 	}
-
 	newLevel();
 
   });
