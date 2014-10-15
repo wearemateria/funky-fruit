@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('fruitGameApp')
-  	.controller('LevelCtrl', function ($scope, $interval) {
+  	.controller('LevelCtrl', function ($scope, $interval, $state) {
 
   		$scope.score = 0;
   		$scope.lives = 3;
@@ -90,16 +90,22 @@ angular.module('fruitGameApp')
 		    	$scope.level++;
 		    	newLevel();
 		    	inputIndex=0;
+		    	isPressing = false;
 		    }
 	    }
 	    else {
-	    	$scope.lives--;
-	    	$scope.$apply();
-	    	console.log('burro do crl');
-	    	inputIndex=0;
-	    	newLevel();
+	    	if($scope.lives !== 0) {
+	    		$scope.lives--;
+		    	$scope.$apply();
+		    	console.log('burro do crl');
+		    	newLevel();
+		    	inputIndex=0;
+		    	isPressing = false;
+	    	}
+	    	else {
+	    		$state.go('main');
+	    	}
 	    }
-
 	}
 
 	
