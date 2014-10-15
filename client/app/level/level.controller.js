@@ -109,6 +109,7 @@ angular.module('fruitGameApp')
 	    	if($scope.lives !== 0) {
 	    		$scope.lives--;
 		    	$scope.$apply();
+		    	$('#wrong')[0].play();
 		    	console.log('burro do crl');
 		    	newLevel();
 		    	inputIndex=0;

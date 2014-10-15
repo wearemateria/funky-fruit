@@ -61,6 +61,10 @@ html, body {
 	font-family: 'baseninemedium';
 }
 
+.red {
+	color: rgb(227, 5, 19);
+}
+
 div[ui-view] {
 	height: 100%;
 }
@@ -75,6 +79,10 @@ div[ui-view] {
 
 	img {
 		width: 20%;
+	}
+
+	.small-icon {
+		width: 5%;
 	}
 }
 
@@ -116,7 +124,7 @@ div[ui-view] {
 }
 
 .score .vida {
-	width: 7%;
+	width: 5%;
 }
 
 .blink {

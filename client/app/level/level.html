@@ -23,10 +23,14 @@
 
 <div class="panel congrats" ng-show="false"></div>
 
-<div class="panel ohno" ng-show="false"></div>
+<div class="panel ohno" ng-show="false">
+	<audio id="wrong" onloadeddata="setAudioLoaded=(5)">
+	  	<source ng-src="assets/sounds/wrong.mp3" type="audio/mpeg" autoplay>
+	</audio>
+</div>
 
 <div class="panel score">
-	<h1><img src="assets/images/score.svg">&nbsp;{{ score }}</h1>
+	<h1><span class="wam-red">score</span>&nbsp;{{ score }}</h1>
 	<img class="vida" src="assets/images/vidas.svg" ng-show="lives>0">
 	<img class="vida" src="assets/images/vidas.svg" ng-show="lives>1">
 	<img class="vida" src="assets/images/vidas.svg" ng-show="lives>2">
