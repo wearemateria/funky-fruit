@@ -3,26 +3,31 @@
 </div>
 
 <div class="fruit-wrapper" style="background-color: {{ activeFruit.color }}">
-	<div class="score">
-		<h1><img src="assets/images/score.svg">&nbsp;{{ score }}</h1>
-		<img class="vida" src="assets/images/vidas.svg" ng-show="lives>0">
-		<img class="vida" src="assets/images/vidas.svg" ng-show="lives>1">
-		<img class="vida" src="assets/images/vidas.svg" ng-show="lives>2">
-	</div>
 	<h1 class="absolute-middle img"><img ng-src="assets/images/{{ activeFruit.name }}.png"></h2>
-	<audio id="1">
+	<audio id="1" onloadeddata="setAudioLoaded=(1)">
 	  	<source ng-src="assets/sounds/1.mp3" type="audio/mpeg" autoplay>
 	</audio>
-	<audio id="2">
+	<audio id="2" onloadeddata="setAudioLoaded=(2)">
 	  	<source ng-src="assets/sounds/2.mp3" type="audio/mpeg" autoplay>
 	</audio>
-	<audio id="3">
+	<audio id="3" onloadeddata="setAudioLoaded=(3)">
 	  	<source ng-src="assets/sounds/3.mp3" type="audio/mpeg" autoplay>
 	</audio>
-	<audio id="4">
+	<audio id="4" onloadeddata="setAudioLoaded=(4)">
 	  	<source ng-src="assets/sounds/4.mp3" type="audio/mpeg" autoplay>
 	</audio>
-	<audio id="5">
+	<audio id="5" onloadeddata="setAudioLoaded=(5)">
 	  	<source ng-src="assets/sounds/5.mp3" type="audio/mpeg" autoplay>
 	</audio>
+</div>
+
+<div class="panel congrats" ng-show="false"></div>
+
+<div class="panel ohno" ng-show="false"></div>
+
+<div class="panel score">
+	<h1><img src="assets/images/score.svg">&nbsp;{{ score }}</h1>
+	<img class="vida" src="assets/images/vidas.svg" ng-show="lives>0">
+	<img class="vida" src="assets/images/vidas.svg" ng-show="lives>1">
+	<img class="vida" src="assets/images/vidas.svg" ng-show="lives>2">
 </div>
