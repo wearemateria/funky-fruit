@@ -70,6 +70,14 @@ div[ui-view] {
 	left: 0;
 	right: 0;
 	margin: auto auto;
+
+	img {
+		width: 20%;
+	}
+}
+
+.absolute-middle.img {
+	bottom: initial;
 }
 
 .fruit-wrapper {

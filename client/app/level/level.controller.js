@@ -25,21 +25,21 @@ angular.module('fruitGameApp')
   			},
   			kiwi: {
   				name: 'kiwi',
-  				color: '#2ECC40',
+  				color: '#C79B73',
   				key: 'D',
   				keyCode: 100,
   				sound: 3
   			},
-  			strawberry: {
-				name: 'strawberry',
+  			apple: {
+				name: 'apple',
   				color: '#FF4136',
   				key: 'F',
   				keyCode: 102,
   				sound: 4
   			},
-  			other: {
-				name: 'the other',
-  				color: '#001F3F',
+  			lime: {
+				name: 'lime',
+  				color: '#2ECC40',
   				key: 'G',
   				keyCode: 103,
   				sound: 5
@@ -68,11 +68,11 @@ angular.module('fruitGameApp')
 	              break;
 	           
 	          case 102: //F
-	              $scope.activeFruit = $scope.fruits.strawberry;
+	              $scope.activeFruit = $scope.fruits.apple;
 	              break;
 	               
 	          case 103: //G
-	              $scope.activeFruit = $scope.fruits.other;
+	              $scope.activeFruit = $scope.fruits.lime;
 	              break;
 	      }
 
@@ -89,13 +89,17 @@ angular.module('fruitGameApp')
 		    	alert('Ganhaste, crl! És bem fino, bro');
 		    	$scope.level++;
 		    	newLevel();
+		    	inputIndex=0;
 		    }
 	    }
 	    else {
 	    	$scope.lives--;
+	    	$scope.$apply();
 	    	console.log('burro do crl');
+	    	inputIndex=0;
 	    	newLevel();
 	    }
+
 	}
 
 	
@@ -113,6 +117,7 @@ angular.module('fruitGameApp')
 	}
 
 	function newLevel() {
+		document.onkeypress = '';
 		// Generate fruit array
 		function generateFruits (length) {
 			$scope.currentFruits = [];
@@ -143,14 +148,19 @@ angular.module('fruitGameApp')
 			$scope.activeFruit = $scope.currentFruits[i];
 			console.log($scope.activeFruit.sound);
 			$('#'+$scope.activeFruit.sound)[0].play();
-			index++;
+			if(index+1 === $scope.currentFruits.length) {
+				startGame();
+			}
+			else {
+				index++;
+			}	
 		}
 		
 		changeFruit(index);
 		$interval(function () {
 			changeFruit(index);
-		}, 1500/$scope.level, $scope.currentFruits.length);
-		startGame();
+		}, 1500/$scope.level, $scope.currentFruits.length-1);
+		
 	}
 	newLevel();
 
