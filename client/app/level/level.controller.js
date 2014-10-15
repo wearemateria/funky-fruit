@@ -103,7 +103,7 @@ angular.module('fruitGameApp')
 		    	isPressing = false;
 	    	}
 	    	else {
-	    		$state.go('main');
+	    		$state.go('gameover');
 	    	}
 	    }
 	}
