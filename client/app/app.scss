@@ -33,6 +33,7 @@ $fa-font-path: "/bower_components/font-awesome/fonts";
 @import 'account/login/login.scss';
 @import 'admin/admin.scss';
 @import 'gameover/gameover.scss';
+@import 'hiscores/hiscores.scss';
 @import 'level/level.scss';
 @import 'main/main.scss';
 @import 'submit/submit.scss';
@@ -140,4 +141,15 @@ div[ui-view] {
 }
 @-webkit-keyframes blink {
   to { visibility: hidden; }
+}
+
+.webcam {
+	text-align: center;
+	height: 75%;
+	padding-top: 40px;
+
+	video {
+		width: auto;
+		height: 100%;
+	}
 }

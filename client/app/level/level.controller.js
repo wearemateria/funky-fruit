@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('fruitGameApp')
-  	.controller('LevelCtrl', function ($scope, $interval, $state) {
+  	.controller('LevelCtrl', function ($scope, $interval, $state, $timeout) {
 
   		$scope.score = 0;
   		$scope.lives = 3;
@@ -100,7 +100,9 @@ angular.module('fruitGameApp')
 		    	$scope.isPlaying = false;
 		    	alert('Ganhaste, crl! És bem fino, bro');
 		    	$scope.level++;
-		    	newLevel();
+		    	$timeout(function () {
+		    		newLevel();
+		    	}, 5000);
 		    	inputIndex=0;
 		    	isPressing = false;
 		    }
@@ -111,7 +113,9 @@ angular.module('fruitGameApp')
 		    	$scope.$apply();
 		    	$('#wrong')[0].play();
 		    	console.log('burro do crl');
-		    	newLevel();
+		    	$timeout(function () {
+		    		newLevel();
+		    	}, 5000);
 		    	inputIndex=0;
 		    	isPressing = false;
 	    	}
