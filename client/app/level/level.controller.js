@@ -1,9 +1,12 @@
 'use strict';
 
 angular.module('fruitGameApp')
-  	.controller('LevelCtrl', function ($scope, $interval, $state, $timeout) {
+  	.controller('LevelCtrl', function ($scope, $interval, $state, $timeout, $rootScope) {
 
   		$scope.score = 0;
+  		$scope.$watch('score', function () {
+  			$rootScope.score = $scope.score;
+  		});
   		$scope.lives = 3;
   		$scope.level = 1;
   		$scope.isPlaying = true;

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('fruitGameApp')
-  .controller('MainCtrl', function ($scope, $http, $state) {
+  .controller('MainCtrl', function ($scope, $http, $state, $timeout) {
     $scope.credits = 42; 
     function detectKey(event){
 
@@ -32,4 +32,8 @@ angular.module('fruitGameApp')
   }
   document.onkeypress=detectKey;
 
+  var timer = $timeout(function () {
+    $state.go('hiscores');
+  }, 20000);
+  $timeout.cancel(timer);
   });
