@@ -2,26 +2,6 @@
 
 angular.module('fruitGameApp')
 	.controller('SubmitCtrl', function ($scope, $state, $rootScope, score, $timeout) {
-		$scope.hideUI = true;
-		$('.ng-camera-take-btn').click(function () {
-			$scope.$watch('media', function(media) {
-				if (typeof(media) !== 'undefined') {
-					if (typeof($rootScope.score) === 'undefined') {
-						$rootScope.score = 0;
-					}
-					var data = {
-						picture: media,
-						score: $rootScope.score
-					};
-					return score.save(data,
-			          function(data) {
-			            $timeout(function () {
-			            	$state.go('hiscores');
-			            }, 1000);
-			          });
-				}
-	        });
-		});
 
 		function detectKey(event){
 
@@ -29,6 +9,7 @@ angular.module('fruitGameApp')
 	      {
 	          case 97: //A
 	          	$('.ng-camera-take-btn').click();
+	          	document.onkeypress='';
 	            break;
 	        /*
 	          case 115: //S
@@ -49,5 +30,29 @@ angular.module('fruitGameApp')
 	              break;*/
 	      }
 	  }
+
+		$scope.hideUI = true;
+		$('.ng-camera-take-btn').click(function () {
+			$scope.$watch('media', function(media) {
+				if (typeof(media) !== 'undefined') {
+					if (typeof($rootScope.score) === 'undefined') {
+						$rootScope.score = 0;
+					}
+					var data = {
+						picture: media,
+						score: $rootScope.score
+					};
+					return score.save(data,
+			          function(data) {
+			            $timeout(function () {
+			            	$state.go('hiscores');
+			            }, 500);
+			          });
+				}
+				if(typeof(media) === 'undefined') {
+					document.onkeypress=detectKey;
+				}
+	        });
+		});
 	  document.onkeypress=detectKey;
 	});

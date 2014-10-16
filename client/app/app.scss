@@ -97,6 +97,11 @@ div[ui-view] {
 	left: 0;
 	width: 100%;
 	height: 100%;
+	background-color: $fakeBlack;
+
+	.absolute-middle {
+		font-size: 90px;
+	}
 }
 
 .fruit-wrapper {

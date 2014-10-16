@@ -2,14 +2,15 @@
 
 angular.module('fruitGameApp')
   	.controller('LevelCtrl', function ($scope, $interval, $state, $timeout, $rootScope) {
-
+  		$timeout.cancel($rootScope.timer);
+  		//console.log($rootScope.timer);
   		$scope.score = 0;
   		$scope.$watch('score', function () {
   			$rootScope.score = $scope.score;
   		});
   		$scope.lives = 3;
   		$scope.level = 1;
-  		$scope.isPlaying = true;
+  		$scope.activeFruit = {name:'blank'};
 
   		$scope.fruits = {
   			orange: {
@@ -28,7 +29,7 @@ angular.module('fruitGameApp')
   			},
   			kiwi: {
   				name: 'kiwi',
-  				color: '#C79B73',
+  				color: 'rgb(181, 123, 76)',
   				key: 'D',
   				keyCode: 100,
   				sound: 3
@@ -50,22 +51,13 @@ angular.module('fruitGameApp')
   		};
 	
 
-	// Audio functions
-	var audioLoaded = [false, false, false, false, false, false];
-	function setAudioLoaded(id) {
-		audioLoaded[id] = true;
-	}
-
-	function isAudioLoaded(id) {
-		return audioLoaded[id];
-	}
-
 	// Handle keypress 
 	var timeDiff, currentInput, lastInput;
 	var inputIndex = 0;
 	var isPressing = false;
 	function detectKey(event){
 		isPressing = true;
+		$scope.shouldPlay = false;
 	      switch(event.which)
 	      {         
 	          case 97: //A
@@ -100,8 +92,10 @@ angular.module('fruitGameApp')
 		    $('audio').each(function(){this.pause();this.currentTime = 0;});
 		    $('#'+$scope.activeFruit.sound)[0].play();
 		    if ( $scope.currentFruits.length === inputIndex ) {
+		    	document.onkeypress = '';
 		    	$scope.isPlaying = false;
-		    	alert('Ganhaste, crl! És bem fino, bro');
+		    	$scope.isRight = true;
+		    	$scope.$apply();
 		    	$scope.level++;
 		    	$timeout(function () {
 		    		newLevel();
@@ -112,10 +106,11 @@ angular.module('fruitGameApp')
 	    }
 	    else {
 	    	if($scope.lives !== 0) {
+	    		document.onkeypress = '';
+	    		$scope.isWrong = true;
 	    		$scope.lives--;
 		    	$scope.$apply();
 		    	$('#wrong')[0].play();
-		    	console.log('burro do crl');
 		    	$timeout(function () {
 		    		newLevel();
 		    	}, 5000);
@@ -172,26 +167,36 @@ angular.module('fruitGameApp')
 		var index = 0;
 		function changeFruit(i) {
 			$scope.activeFruit = $scope.currentFruits[i];
-			$('audio').each(function(){
-				if(isAudioLoaded(this.id)) {
-					this.load();this.pause();this.currentTime = 0;
-				}
-			});
+			$('audio').each(function(){this.pause();this.currentTime = 0;});			
 			$('#'+$scope.activeFruit.sound)[0].play();
 			if(index+1 === $scope.currentFruits.length) {
-				startGame();
+				$timeout(function () {
+					$scope.shouldPlay = true;
+					$timeout(function () {
+						startGame();
+				}, 2000);
+				}, 2000);
 			}
 			else {
 				index++;
 			}	
 		}
-		
 		changeFruit(index);
+		$scope.$apply();
+		$scope.isRight = false;
+		$scope.isWrong = false;
 		$interval(function () {
 			changeFruit(index);
 		}, 1500/$scope.level, $scope.currentFruits.length-1);
 		
 	}
-	newLevel();
+
+	var loadedFiles = 0;
+	$('audio').on('loadeddata', function () {
+		loadedFiles++;
+		if (loadedFiles === $('audio').length) {
+			newLevel();
+		}
+	});
 
   });

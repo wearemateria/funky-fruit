@@ -7,6 +7,7 @@
 
 var Thing = require('../api/thing/thing.model');
 var User = require('../api/user/user.model');
+var Score = require('../api/score/score.model');
 
 Thing.find({}).remove(function() {
   Thing.create({
@@ -47,3 +48,5 @@ User.find({}).remove(function() {
     }
   );
 });
+
+Score.find({}).remove(function() {});

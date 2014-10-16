@@ -5,7 +5,7 @@ var Score = require('./score.model');
 
 // Get list of scores
 exports.index = function(req, res) {
-  Score.find({}).sort('-score').limit(6).exec(function (err, scores) {
+  Score.find({}).sort('-score').limit(5).exec(function (err, scores) {
     if(err) { return handleError(res, err); }
     return res.json(200, scores);
   });
