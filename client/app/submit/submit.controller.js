@@ -4,16 +4,21 @@ angular.module('fruitGameApp')
 	.controller('SubmitCtrl', function ($scope, $state) {
 		$scope.hideUI = true;
 
+		$('.ng-camera-take-btn').click(function () {
+			$scope.$watch('media', function(media) {
+				if (typeof(media) !== 'undefined') {
+					console.log(media);
+				}
+              	//$state.go('hiscores');
+	        });
+		});
+
 		function detectKey(event){
 
 	      switch(event.which)
 	      {
 	          case 97: //A
 	          	$('.ng-camera-take-btn').click();
-	          	$scope.$watch('media', function(media) {
-		            console.log(media);
-	              	//$state.go('hiscores');
-		        });
 	            break;
 	        /*
 	          case 115: //S
