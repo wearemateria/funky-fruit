@@ -2,13 +2,19 @@
 
 angular.module('fruitGameApp')
 	.controller('SubmitCtrl', function ($scope, $state) {
+		$scope.hideUI = true;
+
 		function detectKey(event){
 
 	      switch(event.which)
 	      {
 	          case 97: //A
-	              $state.go('hiscores');
-	              break;
+	          	$('.ng-camera-take-btn').click();
+	          	$scope.$watch('media', function(media) {
+		            console.log(media);
+	              	//$state.go('hiscores');
+		        });
+	            break;
 	        /*
 	          case 115: //S
 	              $scope.credits++;

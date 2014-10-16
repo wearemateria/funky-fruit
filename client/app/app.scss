@@ -153,3 +153,19 @@ div[ui-view] {
 		height: 100%;
 	}
 }
+
+.ng-camera-controls {
+	display: none;
+}
+
+.ng-camera-stack {
+	padding-top: 40px;
+	text-align: center;
+}
+
+.ng-camera-countdown {
+	position: fixed;
+	top: 30%;
+	left: 10%;
+	font-size: 90px;
+}

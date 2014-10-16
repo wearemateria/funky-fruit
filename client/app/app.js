@@ -7,7 +7,8 @@ angular.module('fruitGameApp', [
   'btford.socket-io',
   'ui.router',
   'ui.bootstrap',
-  'webcam'
+  'webcam',
+  'omr.directives'
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
     $urlRouterProvider

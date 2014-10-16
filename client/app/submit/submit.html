@@ -1,3 +1,11 @@
-<webcam></webcam>
+<ng-camera
+	type="photo"
+	enabled="true"
+	width="640"
+	height="480"
+	countdown="3"
+	ng-model="media"
+	capture="printPhoto(media)"
+	capture-message="Go!"></ng-camera>
 
-<h1 class="absolute-middle" style="bottom: 10%">say "cheese" and press <img class="small-icon blink-fast-forever" src="assets/images/orange.png"></h1>
+<h1 class="absolute-middle" style="bottom: 5%">say "cheese" and press <img class="small-icon blink-fast-forever" src="assets/images/orange.png"></h1>
