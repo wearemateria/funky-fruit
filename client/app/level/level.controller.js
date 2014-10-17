@@ -11,6 +11,8 @@ angular.module('fruitGameApp')
   		$scope.lives = 3;
   		$scope.level = 1;
   		$scope.activeFruit = {name:'blank'};
+  		$scope.playTime = 1500;
+  		$scope.numFruits = 3;
 
   		$scope.fruits = {
   			orange: {
@@ -86,7 +88,7 @@ angular.module('fruitGameApp')
 	    	currentInput = new Date();
 		    timeDiff = currentInput.valueOf() - lastInput.valueOf();
 		    lastInput = new Date();
-		    $scope.score += $scope.level * 5 + Math.floor(20000/timeDiff);
+		    $scope.score += $scope.level * 5;
 		    inputIndex++;
 		    $scope.$apply();
 		    $('audio').each(function(){this.pause();this.currentTime = 0;});
@@ -151,17 +153,14 @@ angular.module('fruitGameApp')
 			}
 		}
 
-		if ( $scope.level < 4 ) {
-			generateFruits(3);
+		if ($scope.level % 3 === 0) {
+			$scope.numFruits++;
 		}
-		else {
-			if ( $scope.level < 10 ) {
-				generateFruits(5);
-			}
-			else {
-				generateFruits(8);
-			}
-		}  	
+		if ($scope.level % 5 === 0 && $scope.playTime-250 > 0) {
+			$scope.playTime = $scope.playTime - 250;
+		}
+
+		generateFruits($scope.numFruits);	
 
 		// Handle the sequence
 		var index = 0;
@@ -174,7 +173,7 @@ angular.module('fruitGameApp')
 					$scope.shouldPlay = true;
 					$timeout(function () {
 						startGame();
-				}, 2000);
+				}, 1000);
 				}, 2000);
 			}
 			else {
@@ -187,7 +186,7 @@ angular.module('fruitGameApp')
 		$scope.isWrong = false;
 		$interval(function () {
 			changeFruit(index);
-		}, 1500/$scope.level, $scope.currentFruits.length-1);
+		}, $scope.playTime, $scope.currentFruits.length-1);
 		
 	}
 
