@@ -68,6 +68,7 @@ angular.module('fruitGameApp')
 	           
 	          case 115: //S
 	              $scope.activeFruit = $scope.fruits.banana;
+	              console.log('banana');
 	              break;
 	           
 	          case 100: //D
@@ -80,6 +81,7 @@ angular.module('fruitGameApp')
 	               
 	          case 103: //G
 	              $scope.activeFruit = $scope.fruits.lime;
+	              console.log('lima');
 	              break;
 	      }
 

@@ -49,4 +49,4 @@ User.find({}).remove(function() {
   );
 });
 
-Score.find({}).remove(function() {});
+//Score.find({}).remove(function() {});
